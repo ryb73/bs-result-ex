@@ -4,6 +4,10 @@ let toOpt = fun
     | Ok(v) => Some(v)
     | _ => None;
 
+let fromOpt = (error) => fun
+    | None => Error(error)
+    | Some(v) => Ok(v);
+
 let getError = fun
     | Error(e) => Some(e)
     | _ => None;
