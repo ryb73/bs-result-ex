@@ -23,3 +23,11 @@ let bindError = (callback) => fun
     | Error(e) => callback(e);
 
 let mapError = (callback) => bindError(e => Error(callback(e)));
+
+let isError = fun
+    | Error(_) => true
+    | _ => false;
+
+let isOk = fun
+    | Ok(_) => true
+    | _ => false;
