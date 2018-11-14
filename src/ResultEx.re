@@ -1,5 +1,7 @@
 open Belt.Result;
 
+exception NoValue;
+
 let toOpt = fun
     | Ok(v) => Some(v)
     | _ => None;
@@ -17,3 +19,7 @@ let bindError = (callback) => fun
     | Error(e) => callback(e);
 
 let mapError = (callback) => bindError(e => Error(callback(e)));
+
+let getExn = fun
+    | Ok(v) => v
+    | Error(_) => raise(NoValue);
