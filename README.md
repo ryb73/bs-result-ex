@@ -1,2 +1,2 @@
 # bs-result-ex
-Utilities for Js.Result
+Utilities for Belt.Result

@@ -1,4 +1,4 @@
-open Js.Result;
+open Belt.Result;
 open ResultEx;
 
 let get = fun
@@ -6,7 +6,7 @@ let get = fun
     | None => failwith("error");
 
 Ok("yeah")
-    |> map((++)(" ok"))
+    |> map(_, (++)(" ok"))
     |> toOpt
     |> get
     |> Js.log;
