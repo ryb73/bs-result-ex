@@ -1,13 +1,14 @@
 {
   "name": "bs-result-ex",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Utilities for Belt.Result",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && bsb -make-world",
     "watch": "npm run clean && bsb -make-world -w",
-    "clean": "rm -rf lib && bsb -clean-world"
+    "clean": "rm -rf lib && bsb -clean-world",
+    "postinstall": "[ ! -f package-links.json ] || ppl link-file"
   },
   "keywords": [
     "bucklescript",
