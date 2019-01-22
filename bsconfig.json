@@ -1,5 +1,5 @@
 {
-    "name" : "bs-result-ex",
+    "name" : "@ryb73/res-ex",
     "sources" : [
         { "dir" : "src" },
         {

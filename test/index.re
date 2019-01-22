@@ -1,5 +1,5 @@
 open Belt.Result;
-open ResultEx;
+open ResEx;
 
 let get = fun
     | Some(x) => x
