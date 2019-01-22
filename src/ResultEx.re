@@ -23,3 +23,13 @@ let mapError = (callback) => bindError(e => Error(callback(e)));
 let getExn = fun
     | Ok(v) => v
     | Error(_) => raise(NoValue);
+
+let elevateArray = (array) =>
+    array
+    |> Js.Array.reduce((acc, result) =>
+        switch (acc, result) {
+            | (Error(_), _) => acc
+            | (_, Error(_) as error) => error
+            | (Ok(arr), Ok(result)) => Ok(Js.Array.concat([| result |], arr))
+        }
+    , Ok([||]));
