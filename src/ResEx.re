@@ -2,6 +2,9 @@ open Belt.Result;
 
 exception NoValue;
 
+let ok = v => Ok(v);
+let error = v => Error(v);
+
 let toOpt = fun
     | Ok(v) => Some(v)
     | _ => None;

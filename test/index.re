@@ -20,6 +20,6 @@ Error("oh")
 |> elevateArray
 |> Js.log;
 
-[| Ok(1), Error("nah"), Ok(3) |]
+[| ok(1), error("nah"), ok(3) |]
 |> elevateArray
 |> Js.log;
