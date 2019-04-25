@@ -28,6 +28,6 @@
     "url": "git@github.com:ryb73/bs-result-ex.git"
   },
   "peerDependencies": {
-    "bs-platform": "^4.0.0"
+    "bs-platform": "^5.0.0"
   }
 }
