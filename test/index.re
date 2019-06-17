@@ -6,15 +6,15 @@ let get = fun
     | None => failwith("error");
 
 Ok("yeah")
-    |> map(_, (++)(" ok"))
-    |> toOpt
-    |> get
-    |> Js.log;
+|> map(_, (++)(" ok"))
+|> toOpt
+|> get
+|> Js.log;
 
 Error("oh")
-    |> mapError((++)(" an error"))
-    |> getError
-    |> Js.log;
+|> mapError((++)(" an error"))
+|> getError
+|> Js.log;
 
 [| Ok(1), Ok(2), Ok(3) |]
 |> elevateArray
@@ -23,3 +23,7 @@ Error("oh")
 [| ok(1), error("nah"), ok(3) |]
 |> elevateArray
 |> Js.log;
+
+try (Error("Nothing!") |> ResEx.getExn) {
+    | e => Js.Exn.asJsExn(e) |> Js.log
+};

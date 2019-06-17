@@ -1,13 +1,11 @@
 open Belt.Result;
 
-exception NoValue;
-
 let ok = v => Ok(v);
 let error = v => Error(v);
 
 let toOpt = fun
     | Ok(v) => Some(v)
-    | _ => None;
+    | Error(_) => None;
 
 let fromOpt = (error) => fun
     | None => Error(error)
@@ -15,7 +13,7 @@ let fromOpt = (error) => fun
 
 let getError = fun
     | Error(e) => Some(e)
-    | _ => None;
+    | Ok(_) => None;
 
 let bindError = (callback) => fun
     | Ok(v) => Ok(v)
@@ -23,9 +21,16 @@ let bindError = (callback) => fun
 
 let mapError = (callback) => bindError(e => Error(callback(e)));
 
+let raiseExn = (payload) => {
+    Js.Promise.resolve(payload) |> ignore;
+    let err = [%bs.raw {| new Error("ResEx.getExn") |}];
+    Js.Dict.set(err, "payload", payload);
+    raise(err);
+};
+
 let getExn = fun
     | Ok(v) => v
-    | Error(_) => raise(NoValue);
+    | Error(payload) => raiseExn(payload);
 
 let elevateArray = (array) =>
     array
