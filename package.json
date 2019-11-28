@@ -26,10 +26,11 @@
     "type": "git",
     "url": "git@github.com:ryb73/bs-result-ex.git"
   },
-  "dependencies": {
+  "peerDependencies": {
     "bs-platform": "^5.0.0 || ^6.0.0"
   },
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.4.9"
+    "@glennsl/bs-jest": "^0.4.9",
+    "bs-platform": "^6.0.0"
   }
 }
