@@ -3,10 +3,11 @@
     "sources" : [
         { "dir" : "src" },
         {
-            "dir": "test",
+            "dir": "__tests__",
             "type": "dev"
         }
     ],
     "refmt": 3,
+    "bs-dev-dependencies": [ "@glennsl/bs-jest" ],
     "bsc-flags": [ "-w +A" ]
 }

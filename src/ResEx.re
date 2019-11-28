@@ -3,7 +3,7 @@ open Belt.Result;
 let ok = v => Ok(v);
 let error = v => Error(v);
 
-let toOpt = fun
+let get = fun
     | Ok(v) => Some(v)
     | Error(_) => None;
 
@@ -32,12 +32,20 @@ let getExn = fun
     | Ok(v) => v
     | Error(payload) => raiseExn(payload);
 
+let rec elevateArrayHelper = (index, array, result) =>
+    switch (result, index, Js.Array.length(array)) {
+        | (Ok(newArr), i, l) when i < l =>
+            switch (array[index]) {
+                | Ok(v) => {
+                    Js.Array.push(v, newArr) |> ignore;
+                    elevateArrayHelper(index + 1, array, result);
+                }
+                | Error(_) as error => error
+            }
+
+        | (Ok(_), _, _)
+        | (Error(_), _, _) => result
+    };
+
 let elevateArray = (array) =>
-    array
-    |> Js.Array.reduce((acc, result) =>
-        switch (acc, result) {
-            | (Error(_), _) => acc
-            | (_, Error(_) as error) => error
-            | (Ok(arr), Ok(result)) => Ok(Js.Array.concat([| result |], arr))
-        }
-    , Ok([||]));
+    elevateArrayHelper(0, array, Ok([||]));

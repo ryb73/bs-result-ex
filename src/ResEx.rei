@@ -1,6 +1,6 @@
 let ok: 'a => Belt.Result.t('a, 'b);
 let error: 'a => Belt.Result.t('b, 'a);
-let toOpt: Belt.Result.t('a, 'b) => option('a);
+let get: Belt.Result.t('a, 'b) => option('a);
 let fromOpt: ('a, option('b)) => Belt.Result.t('b, 'a);
 let getError: Belt.Result.t('a, 'b) => option('b);
 let bindError:

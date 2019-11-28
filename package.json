@@ -4,7 +4,7 @@
   "description": "Utilities for Belt.Result",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Warning: no test specified\"",
+    "test": "jest",
     "build": "npm run clean && bsb -make-world",
     "watch": "npm run clean && bsb -make-world -w",
     "clean": "rm -rf lib && bsb -clean-world",
@@ -12,8 +12,7 @@
   },
   "files": [
     "/bsconfig.json",
-    "/src",
-    "/lib/js/src"
+    "/src"
   ],
   "keywords": [
     "bucklescript",
@@ -27,7 +26,10 @@
     "type": "git",
     "url": "git@github.com:ryb73/bs-result-ex.git"
   },
-  "peerDependencies": {
-    "bs-platform": "^5.0.0"
+  "dependencies": {
+    "bs-platform": "^5.0.0 || ^6.0.0"
+  },
+  "devDependencies": {
+    "@glennsl/bs-jest": "^0.4.9"
   }
 }
